@@ -1,0 +1,105 @@
+# Identity
+
+#### Criando o projeto
+```
+dotnet new mvc --auth Individual -uld -o PastaProjeto
+```
+
+Obs: '-uld' define o tipo de BD como Sql Server, já adicionando os pacotes necessários. 
+
+
+#### Habilitar Edição do Identity
+```
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+```
+
+##### Exibe objetos básicos:
+```
+dotnet aspnet-codegenerator identity -dc Projeto.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
+```
+
+##### Exibe todos os objetos:
+```
+dotnet aspnet-codegenerator identity -dc Projeto.Data.ApplicationDbContext 
+```
+
+
+## Two Factor Authentication 
+
+Exibir as dependências do Identity com o seguinte cómando::
+
+```
+dotnet aspnet-codegenerator identity -dc Projeto.Data.ApplicationDbContext 
+```
+
+Baixe e descompacte [esse arquivo](https://davidshimjs.github.io/qrcodejs/), adicionando-o no diretório 'wwwroot/lib' do seu projeto.
+
+Acrescentar o codigo abaixo em no diretório '/areas/Identity/pages/Account/Manage/EnableAuthenticator.cshtml' no seu projeto:
+
+```
+@section Scripts {
+	@await Html.PartialAsync("_ValidationScriptsPartial")
+ 	<script type="text/javascript" src="~/lib/qrcode.js"></script>
+ 	<script>
+		text: "@Html.Raw(Model.AuthenticatorUri)", 
+			width: 150,
+			new QRCode(document.getElementById("qrCode"),
+			{
+				height: 150
+			});
+	</script>
+}
+```
+
+Pronto, agora o próprio usuário pode ir nas configurações e habilitar a autenticação em dois fatores. Lembrando que ele irá precisar baixar algum app two factor authentication. Os mais comuns são o [Microsoft Authenticator](https://play.google.com/store/apps/details?id=com.azure.authenticator&hl=en) e o [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en).
+
+Com o app instalado o usuário pode ir em gerenciar seus dados e clicar em Two Factor… / autenticação em dois fatores, apontar com o smartphone ao qrcode e em seguida digitar o codigo gerado pelo app no campo. 
+
+A aplicação irá configurar o restante e responder com alguns códigos de recuperação, que o usuário precisa guardar. 
+
+A qualquer momento o proprio usuário pode habilitar ou desabilitar esse tipo de autenticação. 
+
+A partir da próxima vez que for fazer o login, a aplicação irá pedir o código de autorização que o app baixado irá gerar. 
+
+
+##  Login External
+
+#### Facebook
+
+Adicione o pacote [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) ao projeto.
+
+Navegue até as [configurações do facebook](https://developers.facebook.com/apps/) para desenvolvedores.
+
+Adicione um produto tipo login facebook.
+
+Adicione em URIs de redirecionamento OAuth válido (a url da sua aplicação), exemplo: https://localhost:44320/signin-facebook 
+
+Clique em salvar
+
+Vá em ‘Configurações’ => ‘Basico’ e pegue o ID do Aplicativo e a chave secret.
+
+Habilite o armazenamento secreto no projeto com o seguinte comando:
+```
+dotnet user-secrets init
+```
+
+Os seguintes comandos inserem o ID do App e a chave secreta do Facebook no projeto:
+```
+dotnet user-secrets set "Authentication:Facebook:AppId" "<app-id>"
+dotnet user-secrets set "Authentication:Facebook:AppSecret" "<app-secret>"
+```
+
+Obs: substitua <...> pelos valores descritos no item 6
+
+
+Adicione o seguinte codigo em Startup.cs => ConfigureServices:
+```
+services.AddAuthentication().AddFacebook(facebookOptions =>
+{
+    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+});
+```
+
+Pronto, a opção de login com Facebook está disponível
+	
