@@ -8,21 +8,26 @@ dotnet new mvc --auth Individual -uld -o PastaProjeto
 Obs: '-uld' define o tipo de BD como Sql Server, já adicionando os pacotes necessários. 
 
 
-#### Habilitar Edição do Identity
+##### Habilitar Edição do Identity
 ```
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 ```
 
-##### Exibe objetos básicos:
+###### Exibe objetos básicos:
 ```
 dotnet aspnet-codegenerator identity -dc Projeto.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
 ```
 
-##### Exibe todos os objetos:
+##### Desabilitar confirmação de Email:
 ```
-dotnet aspnet-codegenerator identity -dc Projeto.Data.ApplicationDbContext 
+public void ConfigureServices(IServiceCollection services)
+{
+	services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = <<<<false>>>>)
+		.AddEntityFrameworkStores<ApplicationDbContext>();ntext 
+}
 ```
 
+#### 
 
 ## Two Factor Authentication 
 
