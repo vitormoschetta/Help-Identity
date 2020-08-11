@@ -38,7 +38,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-#### Configuração de Senha / Password:
+#### Configuração de Padrão de Senha / Password:
 ```
 services.Configure<IdentityOptions>(options =>
 {	
