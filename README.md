@@ -16,6 +16,11 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 
 #### Exibir arquivos do Identity:
 
+Instalar pacote:
+```
+dotnet tool install -g dotnet-aspnet-codegenerator
+```
+
 ###### Exibe arquivos básicos:
 
 ```
