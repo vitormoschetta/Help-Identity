@@ -12,6 +12,7 @@ Obs: '-uld' define o tipo de BD como Sql Server, já adicionando os pacotes nece
 
 ```
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer 
 ```
 
 #### Exibir arquivos do Identity:
