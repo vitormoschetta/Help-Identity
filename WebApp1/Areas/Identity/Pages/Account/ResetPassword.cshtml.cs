@@ -28,7 +28,7 @@ namespace WebApp1.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "Informe um e-mail válido.")]
             public string Email { get; set; }
 
             [Required]
@@ -37,7 +37,7 @@ namespace WebApp1.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirme a senha")]
             [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não correspondem.")]
             public string ConfirmPassword { get; set; }
 
