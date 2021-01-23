@@ -5,11 +5,11 @@ using WebApp1.Data;
 
 namespace WebApp1.Configurations
 {
-     public static partial class ServicesConfiguration
+    public static partial class ServicesConfiguration
     {
         public static void ConfigIdentity(this IServiceCollection services)
         {
-            
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)  // true requer a confirmação da conta de email
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -49,7 +49,7 @@ namespace WebApp1.Configurations
             // O código a seguir altera todos os tokens de proteção de dados período de tempo limite para 3 horas:
             services.Configure<DataProtectionTokenProviderOptions>(o =>
                 o.TokenLifespan = TimeSpan.FromHours(3));
-        }  
-        
+        }
+
     }
 }

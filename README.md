@@ -34,3 +34,7 @@ São utilizadas para armazenar webtokens e chaves de usuario de login externo
 
 ## Tutorial para implementação de confirmação de E-mail com SendGrid:
 <https://docs.microsoft.com/pt-br/aspnet/core/security/authentication/accconfirm?view=aspnetcore-5.0&tabs=netcore-cli>
+
+
+## Tutorial para configurar Logon Externo
+<https://docs.microsoft.com/pt-br/aspnet/core/security/authentication/social/?view=aspnetcore-5.0&tabs=visual-studio-code> 

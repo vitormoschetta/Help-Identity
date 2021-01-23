@@ -26,6 +26,7 @@ namespace WebApp1
         {            
             services.ConfigDB(Configuration);
             services.ConfigIdentity();
+            services.ConfigLoginExternalGoogle(Configuration);
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();
 
