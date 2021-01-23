@@ -85,7 +85,10 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
             {
                 foreach (var error in changePasswordResult.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    if (error.Description.Contains("Incorrect password"))
+                        ModelState.AddModelError(string.Empty, "Senha atual incorreta.");
+                    else
+                        ModelState.AddModelError(string.Empty, error.Description);
                 }
                 return Page();
             }

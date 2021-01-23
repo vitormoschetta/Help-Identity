@@ -97,7 +97,7 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             _logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app.", userId);
 
-            StatusMessage = "Your authenticator app has been verified.";
+            StatusMessage = "Seu aplicativo autenticador foi verificado.";
 
             if (await _userManager.CountRecoveryCodesAsync(user) == 0)
             {

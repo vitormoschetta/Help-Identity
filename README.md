@@ -38,3 +38,7 @@ São utilizadas para armazenar webtokens e chaves de usuario de login externo
 
 ## Tutorial para configurar Logon Externo
 <https://docs.microsoft.com/pt-br/aspnet/core/security/authentication/social/?view=aspnetcore-5.0&tabs=visual-studio-code> 
+
+
+## Tutorial para adicionar QR Code à pagina de autenticação por dois fatores
+<https://docs.microsoft.com/pt-br/aspnet/core/security/authentication/identity-enable-qrcodes?view=aspnetcore-5.0>
