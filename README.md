@@ -15,16 +15,16 @@
    - LockoutEnd / Fim do Bloqueio
 	=> informa a data até a qual o usuário ficará bloqueado 
 		
-2. Tabela AspNetRoles
+2. Tabela AspNetRoles  
 Armazena 'funções' / 'perfis', e tem um relacionamento de muitos-para-muitos com a tabela AspNetUsers,
 por isso existe a tabela de ligação AspNetUserRoles. Ou seja, um usuário pode ter muitos perfis, e um
 Perfil pode estar direcionado a muitos Usuários. Logo se trata de autorização para grupos de usuários.
 
-3. Tabela AspNetUserClaims
+3. Tabela AspNetUserClaims  
 Uma Claim é um par de valores definidos para um único usuário. É uma relação de um-para-muitos. 
    
-4. Tabelas AspNetUserTokens e AspNetUserLogins 
-  são utilizadas para armazenar webtokens e chaves de usuario de login externo
+4. Tabelas AspNetUserTokens e AspNetUserLogins   
+São utilizadas para armazenar webtokens e chaves de usuario de login externo
 
 
 
