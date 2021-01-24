@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,10 +8,20 @@ namespace WebApp1.Configurations
 {
     public static partial class ServicesConfiguration
     {
-        public static void ConfigDB(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigDB(
+            this IServiceCollection services, 
+            IConfiguration configuration,
+            IWebHostEnvironment enviroment)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            if (enviroment.EnvironmentName == "Development") {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(configuration.GetConnectionString("SqlServerDev")));
+            }
+            else {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(configuration.GetConnectionString("SqlServerProd")));
+            }
+            
           
         }  
         

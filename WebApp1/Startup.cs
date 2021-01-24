@@ -14,17 +14,19 @@ namespace WebApp1
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment enviroment)
         {
             Configuration = configuration;
+            Enviroment = enviroment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Enviroment { get; }
 
         // Este método é chamado pelo tempo de execução. Use este método para adicionar serviços ao contêiner.
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.ConfigDB(Configuration);
+            services.ConfigDB(Configuration, Enviroment);
             services.ConfigIdentity();
             services.ConfigLoginExternalGoogle(Configuration);
             services.AddDatabaseDeveloperPageExceptionFilter();
