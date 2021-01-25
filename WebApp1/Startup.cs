@@ -42,11 +42,11 @@ namespace WebApp1
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
+                app.UseDeveloperExceptionPage();    // <-- mostra o erro em detalhes, por isso usar apenas em ambiente de desenvolvimento.
+                app.UseMigrationsEndPoint();        // Obs: vc pode usar em produção apenas na implantação para detectar algum erro, caso tenha.
             }
             else
-            {
+            {                
                 app.UseExceptionHandler("/Error");
                 // O valor padrão do HSTS é 30 dias. Você pode querer mudar isso para cenários de produção, consulte https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
